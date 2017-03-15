@@ -1,0 +1,6 @@
+Changes
+Makefile.PL
+MANIFEST
+README
+t/Alien-WinBuilds.t
+lib/Alien/WinBuilds.pm
