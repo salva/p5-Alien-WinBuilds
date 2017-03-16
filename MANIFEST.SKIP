@@ -1,0 +1,8 @@
+^MYMETA\.yml$
+^MYMETA\.json$
+^.git
+~$
+^_build
+\.bak$
+^MANIFEST.SKIP$
+^Build$
