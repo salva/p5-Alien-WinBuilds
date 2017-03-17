@@ -1,0 +1,31 @@
+Usage : command-line arguments to yypkg
+  --prefix : prefix yypkg will be working in
+  --init : setups a directory tree for yypkg (run once)
+  --install : install a package (extension is .txz)
+  --web : download and install a package by name
+    --follow-dependencies : also fetch and install dependencies
+    --download-only : only download packages, don't install them
+    --download-folder : where to put downloaded files (instead of var\cache\packages)
+    --packages : packages to install
+    --auto : download and install without asking for confirmation
+  --upgrade : upgrade with package (extension is .txz)
+    --install-new : If package isn't already installed, install it.
+  --uninstall : uninstall a package by name
+  --list : list the packages installed
+  --config : parent option for:
+    --predicates : 
+      --set : set predicates (e.g. "host=x86_64-w64-mingw32")
+      --delete : delete predicates
+      --list : list predicates
+    --set-mirror : set the mirror to use
+  --repository : operations related to managing whole repositories
+    --generate : generate repository data
+  --makepkg : Create a yypkg package from a directory.
+    --output : output directory (defaults to current dir)
+    --script : package script file (- for stdin)
+    --iscripts : directory of install scripts
+    --directory : directory to package
+    --template : write a template script on stdout
+  --deploy : parent option for:
+    --host : one of "MSYS", "Cygwin", "Windows"
+    --i686 : install for i686 (cumulative)
