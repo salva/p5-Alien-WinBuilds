@@ -10,7 +10,7 @@ require Alien::WinBuilds;
 sub load {
     local $ENV{PATH} = Alien::WinBuilds->new->PATH_with_bin_appended;
     warn "PATH set to $ENV{PATH}";
-    goto &XSLoader::load;
+    &XSLoader::load;
 }
 
 1;

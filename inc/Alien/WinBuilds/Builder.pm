@@ -41,6 +41,18 @@ sub ACTION_build {
     my $self = shift;
     $self->SUPER::ACTION_build(@_);
 
+    my $prefix = $self->win_builds_prefix;
+    if (-e $prefix) {
+        unless($self->_reinstall) {
+            warn "Win-Builds already found at $prefix, skipping installation\n";
+            $self->notes(skip_win_builds_installation => 1);
+            return;
+        }
+        warn "Win-Builds found at $prefix, but you have selected to reinstall it!\n";
+    }
+
+    $self->notes(skip_win_builds_installation => 0);
+
     my $ua = HTTP::Tiny->new;
     my $url = $self->win_builds_installer_url;
     my $zip = $self->win_builds_installer_zip;
@@ -74,6 +86,11 @@ sub ACTION_install {
     my $self = shift;
     $self->SUPER::ACTION_install(@_);
 
+    if ($self->notes('skip_win_builds_installation') == 1) {
+        warn "Skipping installation of Win-Builds\n";
+        return 1;
+    }
+
     my $prefix = $self->win_builds_prefix // die "Win-Builds prefix is undefined\n";
     $self->_remove_old if -e $prefix;
 
@@ -97,6 +114,8 @@ sub ACTION_install {
         system @$cmd and die "Failed! \$?: $?";
         warn "ok!\n";
     }
+
+    1;
 }
 
 sub ACTION_code {
